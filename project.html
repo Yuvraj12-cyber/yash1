@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            overflow: hidden;
+            position: relative;
+        }
+        .circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #ff6600, #ffcc00);
+            border-radius: 50%;
+            animation: rotateCircle 5s infinite linear;
+            filter: blur(20px);
+            opacity: 0.7;
+        }
+        @keyframes rotateCircle {
+            0% { transform: rotate(0deg) translate(100px) rotate(0deg); }
+            100% { transform: rotate(360deg) translate(100px) rotate(-360deg); }
+        }
+        .circle:nth-child(1) { top: 10%; left: 20%; }
+        .circle:nth-child(2) { bottom: 10%; right: 20%; animation-duration: 6s; }
+        .circle:nth-child(3) { top: 50%; left: 50%; animation-duration: 7s; }
+        .container {
+            width: 350px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: scale(0.9);
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .container h2 {
+            margin-bottom: 15px;
+            color: white;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        input:focus {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #ff6600;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
+        }
+        button:hover {
+            background: #cc5200;
+        }
+        .switch {
+            margin-top: 10px;
+            cursor: pointer;
+            color: #ffcc00;
+            transition: 0.3s;
+            text-shadow: 0 0 5px rgba(255, 204, 0, 0.7);
+        }
+        .switch:hover {
+            text-decoration: underline;
+        }
+        .hidden {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+
+    <div class="container" id="login-container">
+        <h2>Login</h2>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button onclick="animateButton(this)">Login</button>
+        <p class="switch" onclick="toggleForm()">Don't have an account? Register</p>
+    </div>
+
+    <div class="container hidden" id="register-container">
+        <h2>Register</h2>
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button onclick="animateButton(this)">Register</button>
+        <p class="switch" onclick="toggleForm()">Already have an account? Login</p>
+    </div>
+
+    <script>
+        function toggleForm() {
+            let loginContainer = document.getElementById('login-container');
+            let registerContainer = document.getElementById('register-container');
+            loginContainer.classList.toggle('hidden');
+            registerContainer.classList.toggle('hidden');
+        }
+        function animateButton(btn) {
+            btn.style.transform = "scale(0.9)";
+            setTimeout(() => {
+                btn.style.transform = "scale(1)";
+            }, 150);
+        }
+    </script>
+</body>
+</html>
